@@ -1,0 +1,111 @@
+<div class="container"  >
+	<div *ngIf="personal">
+		<h2>Personal</h2>
+		<form [formGroup]="fresherPresonalForm">
+			<div class="form-group" >
+				<input type="text" class="form-control" formControlName="name" placeholder="Enter your full name" required>
+				
+			</div>
+			<div class="form-group">
+				<input type="email" class="form-control" formControlName="emailId" placeholder="Enter your Active email id to receive relevant jobs" required>
+				<small class="form-text text-danger" *ngIf="fresherPresonalForm.controls.emailId.invalid && fresherPresonalForm.controls.emailId.touched" >emailId is invalid</small>
+			</div>
+			<div class="form-group">
+				<input type="password" class="form-control" formControlName="password" placeholder="Minimum 6 Characters" required>
+				<small class="form-text text-danger" *ngIf="fresherPresonalForm.controls.password.invalid && fresherPresonalForm.controls.password.touched" >password is invalid</small>
+			</div>
+			<div class="form-group">
+				<input type="text" class="form-control" formControlName="mobileNumber" placeholder="Where Requiter can contract you" required>
+				<small class="form-text text-danger" *ngIf="fresherPresonalForm.controls.mobileNumber.invalid && fresherPresonalForm.controls.mobileNumber.touched" >mobileNumber is invalid</small>
+			</div>
+			<div class="form-group">
+				<input type="text" class="form-control" formControlName="currentCity" placeholder="city name" required>
+				
+			</div>
+			<div class="form-group">
+				<input type="file" class="form-control" formControlName="resume" placeholder="upload resume" required>
+			</div>
+			<button class="btn btn-primary btn-block"  (click)="registerUser()">Register</button>
+			
+		</form>
+	</div>
+  <div *ngIf="education">
+		<h2>Education</h2>
+		<form [formGroup]="fresherEducationForm">
+      <div class="form-group">
+			<input type="text" class="form-control" formControlName="qualification" placeholder="qualification" required>
+				<small class="form-text text-danger" *ngIf="fresherEducationForm.controls.qualification.invalid && fresherEducationForm.controls.qualification.touched" >this feild is require</small>
+			</div>
+			<div class="form-group">
+			<input type="text" class="form-control" formControlName="course" placeholder="enter course" required>
+				<small class="form-text text-danger" *ngIf="fresherEducationForm.controls.course.invalid && fresherEducationForm.controls.course.touched" >this feild is require</small>
+			</div>
+      <div class="form-group">
+			<input type="text" class="form-control" formControlName="specialization" placeholder="enter specialization"required>
+				<small class="form-text text-danger" *ngIf="fresherEducationForm.controls.specialization.invalid && fresherEducationForm.controls.specialization.touched" >this feild is require</small>
+			</div>      
+      <div class="form-group">
+			<input type="text" class="form-control" formControlName="institute" placeholder="enter university/collage name" required>
+				<small class="form-text text-danger" *ngIf="fresherEducationForm.controls.institute.invalid && fresherEducationForm.controls.institute.touched" >this feild is require</small>
+			</div>
+      <div class="form-row" >
+        <select class="form-control" formControlName="courceType" >
+          <option selected=""value="" disabled >cource type</option>
+          <option>Full Time</option>
+          <option>Part Time</option>
+          <option>Corresspondence</option>
+        </select>&nbsp;&nbsp;&nbsp;		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;				
+			<!-- <input type="text" class="form-control" formControlName="courceType" placeholder="courceType" required> -->
+				<small class="form-text text-danger" *ngIf="fresherEducationForm.controls.courceType.invalid && fresherEducationForm.controls.courceType.touched" >this feild is require</small>
+        <select formControlName="passingYear" class="form-control" >
+              <option disabled="" value="" selected="" aria-multiline="false">passing year</option>
+              <option>2020</option>
+              <option>2019</option>
+              <option>2018</option>
+              <option>2017</option>
+              <option>2016</option>
+              <option>2015</option>
+              <option>2014</option>
+              <option>2013</option>
+              <option>2012</option>
+              <option>2011</option>
+			  <option>2010</option>
+			  <option>2009</option>
+              <option>2008</option>
+              <option>2007</option>
+			  <option>2006</option>
+			  <option>2005</option>
+              <option>2004</option>
+              <option>2003</option>
+			  <option>2002</option>
+			  <option>2001</option>
+              <option>2000</option>
+              <option>1999</option>
+			  <option>1998</option>
+			  <option>1997</option>
+              <option>1996</option>
+              <option>1995</option>
+              <option>1994</option>
+            </select>		
+			<!-- <input type="number" class="form-control" formControlName="passingYear" placeholder="passingYear" required> -->
+				<small class="form-text text-danger" *ngIf="fresherEducationForm.controls.passingYear.invalid && fresherEducationForm.controls.passingYear.touched" >this feild is require</small>
+			</div>
+			<div class="form-row" >
+				<div class="col">
+					<div class="md-form">
+						<input type="button" class="form-control" class="btn btn-primary" (click)="addSkill()" value="addSkill">
+          </div>
+					</div>
+				</div>
+
+				<div formArrayName="skills"
+					*ngFor="let skill of fresherEducationForm.controls.skills?.value; let i=index">
+					<div [formGroupName]="i">
+						<input class="form-control" formControlName="skillName" placeholder="Add New skillName"><br>
+        </div>
+					</div>
+					<!-- <input type="text" class="form-control" formControlName="skills" placeholder="skills"> -->
+					<button class="btn btn-primary btn-block"[disabled]="!fresherEducationForm.valid" (click)="addEducationDetail()">Continue</button>
+		</form>
+	</div>
+</div>
